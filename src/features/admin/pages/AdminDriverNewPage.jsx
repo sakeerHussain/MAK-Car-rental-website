@@ -1,5 +1,5 @@
 import { Link, useNavigate } from 'react-router-dom';
-import { useAdminVendors } from '@/api/hooks/admin/useAdminDashboard';
+import { useAdminVendors } from '@/api/hooks/admin/useAdminVendors';
 import { useSaveAdminDriver } from '@/api/hooks/admin/useAdminDrivers';
 import { Card, CardContent } from '@/components/ui/card';
 import { Breadcrumbs, PageHeader } from '@/shared/components';

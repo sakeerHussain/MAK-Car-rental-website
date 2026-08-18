@@ -184,6 +184,31 @@
  */
 
 /**
+ * @typedef {Object} Employee
+ * @property {string} id
+ * @property {string} name
+ * @property {string} phone
+ * @property {string} email
+ * @property {string} department
+ * @property {string} designation
+ * @property {import('./enums').EMPLOYEE_STATUSES[number]} status
+ * @property {string} [joinDate]
+ */
+
+/**
+ * @typedef {Object} Settlement
+ * @property {string} id
+ * @property {string} vendorId
+ * @property {string} vendorName
+ * @property {string} periodStart
+ * @property {string} periodEnd
+ * @property {number} grossAmount
+ * @property {number} commission
+ * @property {number} netPayable
+ * @property {import('./enums').SETTLEMENT_STATUSES[number]} status
+ */
+
+/**
  * @typedef {Object} Staff
  * @property {string} id
  * @property {string} name

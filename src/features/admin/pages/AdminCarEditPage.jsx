@@ -1,6 +1,6 @@
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { useAdminCar, useSaveAdminCar } from '@/api/hooks/admin/useAdminCars';
-import { useAdminVendors } from '@/api/hooks/admin/useAdminDashboard';
+import { useAdminVendors } from '@/api/hooks/admin/useAdminVendors';
 import { Card, CardContent } from '@/components/ui/card';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Alert, Breadcrumbs, PageHeader } from '@/shared/components';

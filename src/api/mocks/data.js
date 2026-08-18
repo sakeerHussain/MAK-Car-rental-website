@@ -90,6 +90,31 @@ export const MOCK_CARS = [
     ],
   },
   {
+    id: 'car-008',
+    make: 'Toyota',
+    model: 'Yaris',
+    registration: 'AUH-55201',
+    year: 2023,
+    colour: 'White',
+    type: 'HATCHBACK',
+    seats: 5,
+    transmission: 'AUTOMATIC',
+    fuel: 'PETROL',
+    hourlyRate: 22,
+    dailyRate: 85,
+    monthlyRate: 2000,
+    ownership: 'VENDOR',
+    vendorId: 'vendor-002',
+    status: 'ACTIVE',
+    available: true,
+    showOnSite: true,
+    featureTags: ['Bluetooth', 'Fuel Efficient'],
+    imageUrl: 'https://images.unsplash.com/photo-1623869675781-12febb2cd3ad?w=800&q=80',
+    images: [
+      'https://images.unsplash.com/photo-1623869675781-12febb2cd3ad?w=800&q=80',
+    ],
+  },
+  {
     id: 'car-004',
     make: 'Mercedes-Benz',
     model: 'E-Class',
@@ -219,6 +244,7 @@ export const MOCK_DRIVERS = [
     monthlyCharge: 3500,
     status: 'AVAILABLE',
     photoUrl: '',
+    vendorId: 'vendor-001',
   },
   {
     id: 'drv-003',
@@ -234,6 +260,7 @@ export const MOCK_DRIVERS = [
     monthlyCharge: 3200,
     status: 'BUSY',
     photoUrl: '',
+    vendorId: 'vendor-002',
   },
 ];
 

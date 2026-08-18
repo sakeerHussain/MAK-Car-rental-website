@@ -37,6 +37,45 @@ import AdminDriverDetailPage from '@/features/admin/pages/AdminDriverDetailPage'
 import AdminDriverEditPage from '@/features/admin/pages/AdminDriverEditPage';
 import AdminBookingsListPage from '@/features/admin/pages/AdminBookingsListPage';
 import AdminTrackingPage from '@/features/admin/pages/AdminTrackingPage';
+import AdminEmployeesListPage from '@/features/admin/pages/AdminEmployeesListPage';
+import AdminEmployeeNewPage from '@/features/admin/pages/AdminEmployeeNewPage';
+import AdminEmployeeDetailPage from '@/features/admin/pages/AdminEmployeeDetailPage';
+import AdminVendorsListPage from '@/features/admin/pages/AdminVendorsListPage';
+import AdminVendorNewPage from '@/features/admin/pages/AdminVendorNewPage';
+import AdminVendorDetailPage from '@/features/admin/pages/AdminVendorDetailPage';
+import AdminVendorEditPage from '@/features/admin/pages/AdminVendorEditPage';
+import AdminMaintenanceListPage from '@/features/admin/pages/AdminMaintenanceListPage';
+import AdminInspectionsListPage from '@/features/admin/pages/AdminInspectionsListPage';
+import AdminCorporateTripsListPage from '@/features/admin/pages/AdminCorporateTripsListPage';
+import AdminCorporateInvoicePage from '@/features/admin/pages/AdminCorporateInvoicePage';
+import AdminSettlementsListPage from '@/features/admin/pages/AdminSettlementsListPage';
+import AdminSettlementDetailPage from '@/features/admin/pages/AdminSettlementDetailPage';
+import AdminReportsPage from '@/features/admin/pages/AdminReportsPage';
+import AdminReportsVendorsPage from '@/features/admin/pages/AdminReportsVendorsPage';
+import AdminReportsDriversPage from '@/features/admin/pages/AdminReportsDriversPage';
+import AdminReviewsListPage from '@/features/admin/pages/AdminReviewsListPage';
+import VendorLoginPage from '@/features/vendor/pages/VendorLoginPage';
+import VendorDashboardPage from '@/features/vendor/pages/VendorDashboardPage';
+import VendorCarsPage from '@/features/vendor/pages/VendorCarsPage';
+import VendorDriversPage from '@/features/vendor/pages/VendorDriversPage';
+import VendorTripsPage from '@/features/vendor/pages/VendorTripsPage';
+import VendorSettlementsPage from '@/features/vendor/pages/VendorSettlementsPage';
+import VendorSettlementPdfPage from '@/features/vendor/pages/VendorSettlementPdfPage';
+import VendorSettlementExcelPage from '@/features/vendor/pages/VendorSettlementExcelPage';
+import DriverLoginPage from '@/features/driver/pages/DriverLoginPage';
+import DriverDashboardPage from '@/features/driver/pages/DriverDashboardPage';
+import DriverTripsPage from '@/features/driver/pages/DriverTripsPage';
+import DriverProfilePage from '@/features/driver/pages/DriverProfilePage';
+import DriverAvailabilityPage from '@/features/driver/pages/DriverAvailabilityPage';
+import DriverPasswordPage from '@/features/driver/pages/DriverPasswordPage';
+import AboutPage from '@/features/marketing/pages/AboutPage';
+import FleetPage from '@/features/marketing/pages/FleetPage';
+import ServicesPage from '@/features/marketing/pages/ServicesPage';
+import ManpowerPage from '@/features/marketing/pages/ManpowerPage';
+import OperationsPage from '@/features/marketing/pages/OperationsPage';
+import ClientsPage from '@/features/marketing/pages/ClientsPage';
+import ContactPage from '@/features/marketing/pages/ContactPage';
+import DocumentPage from '@/features/marketing/pages/DocumentPage';
 
 function ph({ title, description, breadcrumbs }) {
   return <PlaceholderPage title={title} description={description} breadcrumbs={breadcrumbs} />;
@@ -50,20 +89,14 @@ export const router = createBrowserRouter([
         element: <PublicLayout />,
         children: [
           { index: true, element: <HomePage /> },
-          { path: 'about', element: ph(p.about) },
-          { path: 'fleet', element: ph(p.fleet) },
-          { path: 'services', element: ph(p.services) },
-          { path: 'manpower', element: ph(p.manpower) },
-          { path: 'operations', element: ph(p.operations) },
-          { path: 'clients', element: ph(p.clients) },
-          { path: 'contact', element: ph(p.contact) },
-          { path: 'docs/brochure', element: ph(p.docBrochure) },
-          { path: 'docs/trade-license', element: ph(p.docTradeLicense) },
-          { path: 'docs/vat-certificate', element: ph(p.docVatCertificate) },
-          { path: 'docs/quotation', element: ph(p.docQuotation) },
-          { path: 'docs/invoice', element: ph(p.docInvoice) },
-          { path: 'docs/trip-sheet', element: ph(p.docTripSheet) },
-          { path: 'docs/permit', element: ph(p.docPermit) },
+          { path: 'about', element: <AboutPage /> },
+          { path: 'fleet', element: <FleetPage /> },
+          { path: 'services', element: <ServicesPage /> },
+          { path: 'manpower', element: <ManpowerPage /> },
+          { path: 'operations', element: <OperationsPage /> },
+          { path: 'clients', element: <ClientsPage /> },
+          { path: 'contact', element: <ContactPage /> },
+          { path: 'docs/:slug', element: <DocumentPage /> },
           { path: 'cars', element: <CarsBrowsePage /> },
           { path: 'cars/:id', element: <CarDetailPage /> },
           { path: 'login', element: <LoginPage /> },
@@ -110,7 +143,21 @@ export const router = createBrowserRouter([
               { path: 'admin/cars/new', element: <AdminCarNewPage /> },
               { path: 'admin/cars/:id', element: <AdminCarDetailPage /> },
               { path: 'admin/cars/:id/edit', element: <AdminCarEditPage /> },
+              { path: 'admin/employees', element: <AdminEmployeesListPage /> },
+              { path: 'admin/employees/new', element: <AdminEmployeeNewPage /> },
+              { path: 'admin/employees/:id', element: <AdminEmployeeDetailPage /> },
+              { path: 'admin/maintenance', element: <AdminMaintenanceListPage /> },
+              { path: 'admin/inspections', element: <AdminInspectionsListPage /> },
               { path: 'admin/tracking', element: <AdminTrackingPage /> },
+            ],
+          },
+          {
+            element: <AdminPermissionRoute permission="MANAGE_VENDORS" />,
+            children: [
+              { path: 'admin/vendors', element: <AdminVendorsListPage /> },
+              { path: 'admin/vendors/new', element: <AdminVendorNewPage /> },
+              { path: 'admin/vendors/:id', element: <AdminVendorDetailPage /> },
+              { path: 'admin/vendors/:id/edit', element: <AdminVendorEditPage /> },
             ],
           },
           {
@@ -127,25 +174,26 @@ export const router = createBrowserRouter([
             children: [
               { path: 'admin/bookings', element: <AdminBookingsListPage /> },
               { path: 'admin/bookings/:id/invoice', element: ph(p.adminBookingInvoice) },
+              { path: 'admin/corporate-trips', element: <AdminCorporateTripsListPage /> },
+              { path: 'admin/corporate-trips/:id/invoice', element: <AdminCorporateInvoicePage /> },
+              { path: 'admin/reviews', element: <AdminReviewsListPage /> },
             ],
           },
-          { path: 'admin/employees', element: ph(p.adminEmployees) },
-          { path: 'admin/employees/new', element: ph(p.adminEmployeeNew) },
-          { path: 'admin/employees/:id', element: ph(p.adminEmployeeDetail) },
-          { path: 'admin/vendors', element: ph(p.adminVendors) },
-          { path: 'admin/vendors/new', element: ph(p.adminVendorNew) },
-          { path: 'admin/vendors/:id', element: ph(p.adminVendorDetail) },
-          { path: 'admin/vendors/:id/edit', element: ph(p.adminVendorEdit) },
-          { path: 'admin/maintenance', element: ph(p.adminMaintenance) },
-          { path: 'admin/inspections', element: ph(p.adminInspections) },
-          { path: 'admin/corporate-trips', element: ph(p.adminCorporateTrips) },
-          { path: 'admin/corporate-trips/:id/invoice', element: ph(p.adminCorporateInvoice) },
-          { path: 'admin/settlements', element: ph(p.adminSettlements) },
-          { path: 'admin/settlements/:id', element: ph(p.adminSettlementDetail) },
-          { path: 'admin/reports', element: ph(p.adminReports) },
-          { path: 'admin/reports/vendors', element: ph(p.adminReportsVendors) },
-          { path: 'admin/reports/drivers', element: ph(p.adminReportsDrivers) },
-          { path: 'admin/reviews', element: ph(p.adminReviews) },
+          {
+            element: <AdminPermissionRoute permission="MANAGE_BILLING" />,
+            children: [
+              { path: 'admin/settlements', element: <AdminSettlementsListPage /> },
+              { path: 'admin/settlements/:id', element: <AdminSettlementDetailPage /> },
+            ],
+          },
+          {
+            element: <AdminPermissionRoute permission="VIEW_REPORTS" />,
+            children: [
+              { path: 'admin/reports', element: <AdminReportsPage /> },
+              { path: 'admin/reports/vendors', element: <AdminReportsVendorsPage /> },
+              { path: 'admin/reports/drivers', element: <AdminReportsDriversPage /> },
+            ],
+          },
           { path: 'admin/users', element: ph(p.adminUsers) },
           { path: 'admin/audit', element: ph(p.adminAudit) },
           { path: 'admin/settings', element: ph(p.adminSettings) },
@@ -156,7 +204,7 @@ export const router = createBrowserRouter([
     ],
   },
 
-  { path: 'vendor/login', element: ph(p.vendorLogin) },
+  { path: 'vendor/login', element: <VendorLoginPage /> },
 
   {
     element: <VendorRoute />,
@@ -164,19 +212,19 @@ export const router = createBrowserRouter([
       {
         element: <VendorLayout />,
         children: [
-          { path: 'vendor', element: ph(p.vendorDashboard) },
-          { path: 'vendor/cars', element: ph(p.vendorCars) },
-          { path: 'vendor/drivers', element: ph(p.vendorDrivers) },
-          { path: 'vendor/trips', element: ph(p.vendorTrips) },
-          { path: 'vendor/settlements', element: ph(p.vendorSettlements) },
-          { path: 'vendor/settlements/:id/pdf', element: ph(p.vendorSettlementPdf) },
-          { path: 'vendor/settlements/:id/excel', element: ph(p.vendorSettlementExcel) },
+          { path: 'vendor', element: <VendorDashboardPage /> },
+          { path: 'vendor/cars', element: <VendorCarsPage /> },
+          { path: 'vendor/drivers', element: <VendorDriversPage /> },
+          { path: 'vendor/trips', element: <VendorTripsPage /> },
+          { path: 'vendor/settlements', element: <VendorSettlementsPage /> },
+          { path: 'vendor/settlements/:id/pdf', element: <VendorSettlementPdfPage /> },
+          { path: 'vendor/settlements/:id/excel', element: <VendorSettlementExcelPage /> },
         ],
       },
     ],
   },
 
-  { path: 'driver/login', element: ph(p.driverLogin) },
+  { path: 'driver/login', element: <DriverLoginPage /> },
 
   {
     element: <DriverRoute />,
@@ -184,11 +232,11 @@ export const router = createBrowserRouter([
       {
         element: <DriverLayout />,
         children: [
-          { path: 'driver', element: ph(p.driverDashboard) },
-          { path: 'driver/trips', element: ph(p.driverTrips) },
-          { path: 'driver/profile', element: ph(p.driverProfile) },
-          { path: 'driver/availability', element: ph(p.driverAvailability) },
-          { path: 'driver/password', element: ph(p.driverPassword) },
+          { path: 'driver', element: <DriverDashboardPage /> },
+          { path: 'driver/trips', element: <DriverTripsPage /> },
+          { path: 'driver/profile', element: <DriverProfilePage /> },
+          { path: 'driver/availability', element: <DriverAvailabilityPage /> },
+          { path: 'driver/password', element: <DriverPasswordPage /> },
         ],
       },
     ],

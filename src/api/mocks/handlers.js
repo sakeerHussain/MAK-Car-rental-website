@@ -11,6 +11,7 @@ import {
   mockSessions,
 } from './data';
 import { adminHandlers } from './adminHandlers';
+import { createPortalHandlers } from './portalHandlers';
 
 const latency = () => delay(300 + Math.random() * 500);
 
@@ -382,6 +383,22 @@ startxref
         role: 'STAFF',
         permissions: ['MANAGE_FLEET', 'MANAGE_BOOKINGS', 'VIEW_REPORTS'],
       };
+    } else if (email.includes('vendor@')) {
+      user = {
+        id: 'vendor-user-001',
+        email: email || 'vendor@mak.ae',
+        name: 'Hassan Ali',
+        role: 'VENDOR',
+        vendorId: 'vendor-001',
+      };
+    } else if (email.includes('driver@')) {
+      user = {
+        id: 'driver-user-001',
+        email: email || 'driver@mak.ae',
+        name: 'Ahmed Al Rashid',
+        role: 'DRIVER',
+        driverId: 'drv-001',
+      };
     } else {
       user = {
         id: 'user-demo',
@@ -430,5 +447,6 @@ startxref
     return HttpResponse.json({ user, accessToken: token });
   }),
 
+  ...createPortalHandlers(mockSessions),
   ...adminHandlers,
 ];

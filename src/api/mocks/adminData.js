@@ -39,9 +39,245 @@ export let adminBookings = mockBookings.map((b) => ({
 }));
 
 export const adminVendors = [
-  { id: 'vendor-001', name: 'Gulf Fleet Partners', contactPerson: 'Hassan Ali', status: 'ACTIVE' },
-  { id: 'vendor-002', name: 'Emirates Auto Rentals', contactPerson: 'Sara Khan', status: 'ACTIVE' },
+  {
+    id: 'vendor-001',
+    name: 'Gulf Fleet Partners',
+    contactPerson: 'Hassan Ali',
+    phone: '+971 50 123 4567',
+    email: 'hassan@gulffleet.ae',
+    commissionPercent: 15,
+    status: 'ACTIVE',
+  },
+  {
+    id: 'vendor-002',
+    name: 'Emirates Auto Rentals',
+    contactPerson: 'Sara Khan',
+    phone: '+971 55 987 6543',
+    email: 'sara@emiratesauto.ae',
+    commissionPercent: 12,
+    status: 'ACTIVE',
+  },
 ];
+
+export let adminEmployees = [
+  {
+    id: 'emp-001',
+    name: 'Fatima Al-Rashid',
+    phone: '+971 50 111 2233',
+    email: 'fatima@mak.ae',
+    department: 'Operations',
+    designation: 'Fleet Coordinator',
+    status: 'ACTIVE',
+    joinDate: '2022-03-15',
+  },
+  {
+    id: 'emp-002',
+    name: 'James Wilson',
+    phone: '+971 55 444 5566',
+    email: 'james@mak.ae',
+    department: 'Finance',
+    designation: 'Accounts Manager',
+    status: 'ACTIVE',
+    joinDate: '2021-08-01',
+  },
+];
+
+export let adminMaintenance = [
+  {
+    id: 'mnt-001',
+    carId: 'car-001',
+    carName: 'Toyota Camry',
+    description: 'Full service — oil change, brake pads',
+    startDate: '2026-08-10',
+    endDate: '2026-08-12',
+    status: 'SCHEDULED',
+  },
+  {
+    id: 'mnt-002',
+    carId: 'car-002',
+    carName: 'Nissan Patrol',
+    description: 'Engine diagnostics',
+    startDate: '2026-07-20',
+    endDate: '2026-07-22',
+    status: 'COMPLETED',
+  },
+];
+
+export let adminInspections = [
+  {
+    id: 'ins-001',
+    carId: 'car-001',
+    carName: 'Toyota Camry',
+    inspectorName: 'Ahmed Hassan',
+    inspectionDate: '2026-07-01',
+    result: 'PASS',
+    notes: 'All systems operational',
+  },
+  {
+    id: 'ins-002',
+    carId: 'car-002',
+    carName: 'Nissan Patrol',
+    inspectorName: 'Ravi Kumar',
+    inspectionDate: '2026-06-15',
+    result: 'CONDITIONAL',
+    notes: 'Minor tyre wear noted',
+  },
+];
+
+export let adminCorporateAccounts = [
+  {
+    id: 'corp-acc-001',
+    name: 'Emirates National Bank',
+    contactPerson: 'Layla Mohammed',
+    email: 'layla@enbd.ae',
+    phone: '+971 4 123 4567',
+    status: 'ACTIVE',
+  },
+  {
+    id: 'corp-acc-002',
+    name: 'Dubai Healthcare Group',
+    contactPerson: 'Dr. Omar Siddiqui',
+    email: 'omar@dhg.ae',
+    phone: '+971 4 987 6543',
+    status: 'ACTIVE',
+  },
+];
+
+export let adminCorporateMemberships = [
+  {
+    id: 'corp-mem-001',
+    userId: 'user-002',
+    userName: 'Sarah Mitchell',
+    accountId: 'corp-acc-001',
+    accountName: 'Emirates National Bank',
+    role: 'BOOKER',
+    status: 'ACTIVE',
+  },
+  {
+    id: 'corp-mem-002',
+    userId: 'user-003',
+    userName: 'Omar Farouk',
+    accountId: 'corp-acc-001',
+    accountName: 'Emirates National Bank',
+    role: 'VIEWER',
+    status: 'ACTIVE',
+  },
+];
+
+export let adminCorporateTrips = [
+  {
+    id: 'ctrip-001',
+    accountId: 'corp-acc-001',
+    accountName: 'Emirates National Bank',
+    bookedBy: 'Sarah Mitchell',
+    bookerPhone: '+971 50 222 3344',
+    bookerEmail: 'sarah@example.com',
+    passenger: 'Executive Team (4 pax)',
+    scheduledPickup: '2026-08-20T09:00:00',
+    expectedCompletion: '2026-08-20T17:00:00',
+    carId: 'car-001',
+    carName: 'Toyota Camry',
+    driverId: 'drv-001',
+    driverName: 'Rashid Al-Maktoum',
+    status: 'CONFIRMED',
+    pickup: 'Dubai International Airport',
+    destination: 'DIFC Conference Centre',
+    stops: ['Burj Khalifa'],
+    waitingTime: 30,
+    billingArrangement: 'BILL_TO_COMPANY',
+    projectCode: 'ENBD-Q3-2026',
+    projectManager: 'Layla Mohammed',
+    coordinator: 'Fatima Al-Rashid',
+    remarks: 'VIP pickup — meet at arrivals gate 3',
+    serviceAmount: 850,
+    taxPercent: 5,
+    poNumber: 'PO-ENBD-8821',
+    externalReference: 'EXT-REF-001',
+  },
+  {
+    id: 'ctrip-002',
+    accountId: 'corp-acc-002',
+    accountName: 'Dubai Healthcare Group',
+    bookedBy: 'Omar Farouk',
+    bookerPhone: '+971 55 333 4455',
+    bookerEmail: 'omar@example.com',
+    passenger: 'Dr. Siddiqui',
+    scheduledPickup: '2026-08-22T14:00:00',
+    expectedCompletion: '2026-08-22T16:00:00',
+    status: 'REQUESTED',
+    pickup: 'Dubai Healthcare Group HQ',
+    destination: 'Dubai Mall',
+    stops: [],
+    billingArrangement: 'NOT_SET',
+    remarks: 'Awaiting vehicle assignment',
+  },
+];
+
+export let adminSettlements = [
+  {
+    id: 'stl-001',
+    vendorId: 'vendor-001',
+    vendorName: 'Gulf Fleet Partners',
+    periodStart: '2026-07-01',
+    periodEnd: '2026-07-31',
+    grossAmount: 24500,
+    commission: 3675,
+    netPayable: 20825,
+    status: 'FINALISED',
+  },
+  {
+    id: 'stl-002',
+    vendorId: 'vendor-002',
+    vendorName: 'Emirates Auto Rentals',
+    periodStart: '2026-07-01',
+    periodEnd: '2026-07-31',
+    grossAmount: 18200,
+    commission: 2184,
+    netPayable: 16016,
+    status: 'DRAFT',
+  },
+];
+
+export let adminReviews = [
+  {
+    id: 'rev-001',
+    carId: 'car-001',
+    carName: 'Toyota Camry',
+    customerId: 'user-002',
+    customerName: 'Sarah Mitchell',
+    rating: 5,
+    comment: 'Excellent service, car was spotless and driver was professional.',
+    status: 'PENDING',
+    createdAt: '2026-08-10T10:30:00',
+  },
+  {
+    id: 'rev-002',
+    carId: 'car-002',
+    carName: 'Nissan Patrol',
+    customerId: 'user-003',
+    customerName: 'Omar Farouk',
+    rating: 4,
+    comment: 'Great SUV for family trip. Slightly delayed pickup.',
+    status: 'APPROVED',
+    createdAt: '2026-07-28T15:45:00',
+  },
+  {
+    id: 'rev-003',
+    carId: 'car-001',
+    carName: 'Toyota Camry',
+    customerId: 'user-demo',
+    customerName: 'Demo Customer',
+    rating: 3,
+    comment: 'Car was good but AC was not very cold.',
+    status: 'PENDING',
+    createdAt: '2026-08-15T09:00:00',
+  },
+];
+
+/** @returns {Blob} */
+export function createMockExportBlob(label) {
+  return new Blob([`${label} — generated ${new Date().toISOString()}`], { type: 'text/plain' });
+}
 
 export const adminCustomers = [
   { id: 'user-demo', name: 'Demo Customer', email: 'demo@mak.ae' },

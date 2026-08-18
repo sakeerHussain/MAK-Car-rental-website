@@ -6,11 +6,6 @@ export async function fetchAdminDashboard() {
   return normalizeEntity(data);
 }
 
-export async function fetchAdminVendors() {
-  const { data } = await apiClient.get('/admin/api/vendors');
-  return normalizeList(data);
-}
-
 export async function fetchTrackingData() {
   const { data } = await apiClient.get('/admin/tracking/data');
   return normalizeList(data);

@@ -1,6 +1,8 @@
 ---
+description: 
 alwaysApply: true
 ---
+
 # MAK International Rebuild
 
 Full spec: build-spec.md. Current build status: PROGRESS.md — always check this

@@ -1,7 +1,9 @@
 ---
+description: 
 globs: ["src/features/admin/**"]
 alwaysApply: false
 ---
+
 # Admin Module Rules
 
 Admin screens wire directly to /admin/api/** (build-spec.md Section 9.1) —
