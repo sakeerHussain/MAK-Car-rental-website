@@ -6,6 +6,7 @@ import { DriverLayout } from '@/app/layouts/DriverLayout';
 import { placeholders as p } from '@/app/placeholders';
 import {
   AdminRoute,
+  AdminPermissionRoute,
   CorporateInvoiceRoute,
   CorporateRoute,
   CustomerRoute,
@@ -24,6 +25,18 @@ import BookingInvoicePdfPage from '@/features/bookings/pages/BookingInvoicePdfPa
 import LoginPage from '@/features/auth/pages/LoginPage';
 import RegisterPage from '@/features/auth/pages/RegisterPage';
 import LogoutPage from '@/features/auth/pages/LogoutPage';
+import AdminLoginPage from '@/features/admin/pages/AdminLoginPage';
+import AdminDashboardPage from '@/features/admin/pages/AdminDashboardPage';
+import AdminCarsListPage from '@/features/admin/pages/AdminCarsListPage';
+import AdminCarNewPage from '@/features/admin/pages/AdminCarNewPage';
+import AdminCarDetailPage from '@/features/admin/pages/AdminCarDetailPage';
+import AdminCarEditPage from '@/features/admin/pages/AdminCarEditPage';
+import AdminDriversListPage from '@/features/admin/pages/AdminDriversListPage';
+import AdminDriverNewPage from '@/features/admin/pages/AdminDriverNewPage';
+import AdminDriverDetailPage from '@/features/admin/pages/AdminDriverDetailPage';
+import AdminDriverEditPage from '@/features/admin/pages/AdminDriverEditPage';
+import AdminBookingsListPage from '@/features/admin/pages/AdminBookingsListPage';
+import AdminTrackingPage from '@/features/admin/pages/AdminTrackingPage';
 
 function ph({ title, description, breadcrumbs }) {
   return <PlaceholderPage title={title} description={description} breadcrumbs={breadcrumbs} />;
@@ -81,7 +94,7 @@ export const router = createBrowserRouter([
     ],
   },
 
-  { path: 'admin/login', element: ph(p.adminLogin) },
+  { path: 'admin/login', element: <AdminLoginPage /> },
 
   {
     element: <AdminRoute />,
@@ -89,15 +102,33 @@ export const router = createBrowserRouter([
       {
         element: <AdminLayout />,
         children: [
-          { path: 'admin', element: ph(p.adminDashboard) },
-          { path: 'admin/cars', element: ph(p.adminCars) },
-          { path: 'admin/cars/new', element: ph(p.adminCarNew) },
-          { path: 'admin/cars/:id', element: ph(p.adminCarDetail) },
-          { path: 'admin/cars/:id/edit', element: ph(p.adminCarEdit) },
-          { path: 'admin/drivers', element: ph(p.adminDrivers) },
-          { path: 'admin/drivers/new', element: ph(p.adminDriverNew) },
-          { path: 'admin/drivers/:id', element: ph(p.adminDriverDetail) },
-          { path: 'admin/drivers/:id/edit', element: ph(p.adminDriverEdit) },
+          { path: 'admin', element: <AdminDashboardPage /> },
+          {
+            element: <AdminPermissionRoute permission="MANAGE_FLEET" />,
+            children: [
+              { path: 'admin/cars', element: <AdminCarsListPage /> },
+              { path: 'admin/cars/new', element: <AdminCarNewPage /> },
+              { path: 'admin/cars/:id', element: <AdminCarDetailPage /> },
+              { path: 'admin/cars/:id/edit', element: <AdminCarEditPage /> },
+              { path: 'admin/tracking', element: <AdminTrackingPage /> },
+            ],
+          },
+          {
+            element: <AdminPermissionRoute permission="MANAGE_DRIVERS" />,
+            children: [
+              { path: 'admin/drivers', element: <AdminDriversListPage /> },
+              { path: 'admin/drivers/new', element: <AdminDriverNewPage /> },
+              { path: 'admin/drivers/:id', element: <AdminDriverDetailPage /> },
+              { path: 'admin/drivers/:id/edit', element: <AdminDriverEditPage /> },
+            ],
+          },
+          {
+            element: <AdminPermissionRoute permission="MANAGE_BOOKINGS" />,
+            children: [
+              { path: 'admin/bookings', element: <AdminBookingsListPage /> },
+              { path: 'admin/bookings/:id/invoice', element: ph(p.adminBookingInvoice) },
+            ],
+          },
           { path: 'admin/employees', element: ph(p.adminEmployees) },
           { path: 'admin/employees/new', element: ph(p.adminEmployeeNew) },
           { path: 'admin/employees/:id', element: ph(p.adminEmployeeDetail) },
@@ -107,9 +138,6 @@ export const router = createBrowserRouter([
           { path: 'admin/vendors/:id/edit', element: ph(p.adminVendorEdit) },
           { path: 'admin/maintenance', element: ph(p.adminMaintenance) },
           { path: 'admin/inspections', element: ph(p.adminInspections) },
-          { path: 'admin/tracking', element: ph(p.adminTracking) },
-          { path: 'admin/bookings', element: ph(p.adminBookings) },
-          { path: 'admin/bookings/:id/invoice', element: ph(p.adminBookingInvoice) },
           { path: 'admin/corporate-trips', element: ph(p.adminCorporateTrips) },
           { path: 'admin/corporate-trips/:id/invoice', element: ph(p.adminCorporateInvoice) },
           { path: 'admin/settlements', element: ph(p.adminSettlements) },

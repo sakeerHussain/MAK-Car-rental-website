@@ -10,6 +10,7 @@ import {
   mockBookings,
   mockSessions,
 } from './data';
+import { adminHandlers } from './adminHandlers';
 
 const latency = () => delay(300 + Math.random() * 500);
 
@@ -359,14 +360,39 @@ startxref
   http.post('/api/auth/login', async ({ request }) => {
     await latency();
     const body = await request.json();
-    const user = {
-      id: 'user-demo',
-      email: body.email || 'demo@mak.ae',
-      name: 'Demo Customer',
-      role: 'CUSTOMER',
-      hasCorporateAccess: body.email === 'corporate@mak.ae',
-      corporateMemberRole: body.email === 'corporate@mak.ae' ? 'VIEWER' : undefined,
-    };
+    const email = body.email || '';
+
+    let user;
+    if (email.includes('admin@') || email === 'admin') {
+      user = {
+        id: 'admin-001',
+        email: email || 'admin@mak.ae',
+        name: 'Admin User',
+        role: 'ADMIN',
+        permissions: [
+          'MANAGE_FLEET', 'MANAGE_DRIVERS', 'MANAGE_VENDORS', 'MANAGE_BOOKINGS',
+          'MANAGE_BILLING', 'VIEW_REPORTS', 'MANAGE_CONFIG', 'MANAGE_USERS',
+        ],
+      };
+    } else if (email.includes('staff@')) {
+      user = {
+        id: 'staff-001',
+        email,
+        name: 'Staff Operator',
+        role: 'STAFF',
+        permissions: ['MANAGE_FLEET', 'MANAGE_BOOKINGS', 'VIEW_REPORTS'],
+      };
+    } else {
+      user = {
+        id: 'user-demo',
+        email: email || 'demo@mak.ae',
+        name: 'Demo Customer',
+        role: 'CUSTOMER',
+        hasCorporateAccess: email === 'corporate@mak.ae',
+        corporateMemberRole: email === 'corporate@mak.ae' ? 'VIEWER' : undefined,
+      };
+    }
+
     const token = `mock-token-${Date.now()}`;
     mockSessions.set(token, user);
     return HttpResponse.json({ user, accessToken: token });
@@ -403,4 +429,6 @@ startxref
     }
     return HttpResponse.json({ user, accessToken: token });
   }),
+
+  ...adminHandlers,
 ];

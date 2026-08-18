@@ -1,0 +1,15 @@
+---
+alwaysApply: true
+---
+# MAK International Rebuild
+
+Full spec: build-spec.md. Current build status: PROGRESS.md — always check this
+before starting work, it tells you which phases are done and what's next.
+
+- Stack: React 18 (JavaScript, not TypeScript) + Vite + Tailwind + shadcn/ui
+- Brand: MAK blue (#00A0E3) & white — full tokens in build-spec.md Section 1.1
+- Build strictly phase by phase (build-spec.md Section 10). Never start a phase
+  that PROGRESS.md doesn't list as "next."
+- Reuse shared/components/ — never write one-off markup for things that already
+  have a shared component.
+- Every screen needs loading/empty/error states — Section 11 checklist.

@@ -1,0 +1,10 @@
+---
+globs: ["src/features/admin/**"]
+alwaysApply: false
+---
+# Admin Module Rules
+
+Admin screens wire directly to /admin/api/** (build-spec.md Section 9.1) —
+these are real, not mocked. Every list screen must use the shared DataTable
+component. Every CRUD form must use React Hook Form + Zod, matching the pattern
+already established in the Cars and Drivers modules from Phase 3.
