@@ -8,13 +8,16 @@ import { cn } from '@/lib/utils';
  * @param {{
  *   car: import('@/shared/models/typedefs').Car,
  *   priceLabel?: string,
+ *   linkSearch?: string,
  *   className?: string,
  * }} props
  */
-export function VehicleCard({ car, priceLabel, className }) {
+export function VehicleCard({ car, priceLabel, linkSearch, className }) {
+  const detailUrl = linkSearch ? `/cars/${car.id}?${linkSearch}` : `/cars/${car.id}`;
+
   return (
     <Card className={cn('group overflow-hidden transition-shadow hover:shadow-card-hover', className)}>
-      <Link to={`/cars/${car.id}`} className="block">
+      <Link to={detailUrl} className="block">
         <div className="aspect-[16/10] overflow-hidden bg-primary-pale">
           {car.imageUrl ? (
             <img

@@ -34,18 +34,23 @@ apiClient.interceptors.response.use(
     const data = error.response?.data;
 
     if (status === 401) {
-      const { clearSession } = useAuthStore.getState();
-      clearSession();
+      const requestUrl = error.config?.url || '';
+      const isAuthMe = requestUrl.includes('/api/auth/me');
 
-      const path = window.location.pathname;
-      if (path.startsWith('/admin')) {
-        window.location.href = '/admin/login';
-      } else if (path.startsWith('/vendor')) {
-        window.location.href = '/vendor/login';
-      } else if (path.startsWith('/driver')) {
-        window.location.href = '/driver/login';
-      } else if (!path.startsWith('/login') && !path.startsWith('/register')) {
-        window.location.href = '/login';
+      if (!isAuthMe) {
+        const { clearSession } = useAuthStore.getState();
+        clearSession();
+
+        const path = window.location.pathname;
+        if (path.startsWith('/admin')) {
+          window.location.href = '/admin/login';
+        } else if (path.startsWith('/vendor')) {
+          window.location.href = '/vendor/login';
+        } else if (path.startsWith('/driver')) {
+          window.location.href = '/driver/login';
+        } else if (!path.startsWith('/login') && !path.startsWith('/register')) {
+          window.location.href = '/login';
+        }
       }
     }
 

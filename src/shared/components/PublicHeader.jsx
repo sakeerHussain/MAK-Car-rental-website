@@ -16,6 +16,20 @@ const navLinks = [
 export function PublicHeader() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const user = useAuthStore((s) => s.user);
+  const hasCorporateAccess = useAuthStore((s) => s.hasCorporateAccess);
+
+  const customerLinks = user?.role === 'CUSTOMER' ? (
+    <>
+      <Button variant="ghost" size="sm" asChild>
+        <Link to="/my-bookings">My Bookings</Link>
+      </Button>
+      {hasCorporateAccess() ? (
+        <Button variant="ghost" size="sm" asChild>
+          <Link to="/my-corporate-trips">Corporate Trips</Link>
+        </Button>
+      ) : null}
+    </>
+  ) : null;
 
   return (
     <header className="sticky top-0 z-40 border-b border-border-brand bg-surface/95 backdrop-blur-md">
@@ -50,9 +64,10 @@ export function PublicHeader() {
           <Button variant="outline" asChild>
             <Link to="/cars">Browse Cars</Link>
           </Button>
+          {customerLinks}
           {user ? (
-            <Button asChild>
-              <Link to="/my-bookings">My Bookings</Link>
+            <Button variant="outline" asChild>
+              <Link to="/logout">Sign Out</Link>
             </Button>
           ) : (
             <Button asChild>
@@ -91,6 +106,24 @@ export function PublicHeader() {
                 {link.label}
               </NavLink>
             ))}
+            {user?.role === 'CUSTOMER' ? (
+              <NavLink
+                to="/my-bookings"
+                onClick={() => setMobileOpen(false)}
+                className="rounded-lg px-3 py-2 text-sm font-medium text-text-secondary"
+              >
+                My Bookings
+              </NavLink>
+            ) : null}
+            {hasCorporateAccess() ? (
+              <NavLink
+                to="/my-corporate-trips"
+                onClick={() => setMobileOpen(false)}
+                className="rounded-lg px-3 py-2 text-sm font-medium text-text-secondary"
+              >
+                Corporate Trips
+              </NavLink>
+            ) : null}
             <Button className="mt-2" asChild>
               <Link to="/cars" onClick={() => setMobileOpen(false)}>
                 Browse Cars

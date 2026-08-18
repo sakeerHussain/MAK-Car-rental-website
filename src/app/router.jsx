@@ -14,6 +14,16 @@ import {
   VendorRoute,
 } from '@/features/auth/RouteGuards';
 import { PlaceholderPage } from '@/shared/components';
+import HomePage from '@/features/marketing/pages/HomePage';
+import CarsBrowsePage from '@/features/cars/pages/CarsBrowsePage';
+import CarDetailPage from '@/features/cars/pages/CarDetailPage';
+import BookCarPage from '@/features/bookings/pages/BookCarPage';
+import MyBookingsPage from '@/features/bookings/pages/MyBookingsPage';
+import BookingInvoicePage from '@/features/bookings/pages/BookingInvoicePage';
+import BookingInvoicePdfPage from '@/features/bookings/pages/BookingInvoicePdfPage';
+import LoginPage from '@/features/auth/pages/LoginPage';
+import RegisterPage from '@/features/auth/pages/RegisterPage';
+import LogoutPage from '@/features/auth/pages/LogoutPage';
 
 function ph({ title, description, breadcrumbs }) {
   return <PlaceholderPage title={title} description={description} breadcrumbs={breadcrumbs} />;
@@ -26,7 +36,7 @@ export const router = createBrowserRouter([
       {
         element: <PublicLayout />,
         children: [
-          { index: true, element: ph(p.home) },
+          { index: true, element: <HomePage /> },
           { path: 'about', element: ph(p.about) },
           { path: 'fleet', element: ph(p.fleet) },
           { path: 'services', element: ph(p.services) },
@@ -41,18 +51,18 @@ export const router = createBrowserRouter([
           { path: 'docs/invoice', element: ph(p.docInvoice) },
           { path: 'docs/trip-sheet', element: ph(p.docTripSheet) },
           { path: 'docs/permit', element: ph(p.docPermit) },
-          { path: 'cars', element: ph(p.cars) },
-          { path: 'cars/:id', element: ph(p.carDetail) },
-          { path: 'login', element: ph(p.login) },
-          { path: 'register', element: ph(p.register) },
-          { path: 'logout', element: ph(p.logout) },
+          { path: 'cars', element: <CarsBrowsePage /> },
+          { path: 'cars/:id', element: <CarDetailPage /> },
+          { path: 'login', element: <LoginPage /> },
+          { path: 'register', element: <RegisterPage /> },
+          { path: 'logout', element: <LogoutPage /> },
           {
             element: <CustomerRoute />,
             children: [
-              { path: 'cars/:id/book', element: ph(p.carBook) },
-              { path: 'my-bookings', element: ph(p.myBookings) },
-              { path: 'my-bookings/:id/invoice', element: ph(p.bookingInvoice) },
-              { path: 'my-bookings/:id/invoice/pdf', element: ph(p.bookingInvoicePdf) },
+              { path: 'cars/:id/book', element: <BookCarPage /> },
+              { path: 'my-bookings', element: <MyBookingsPage /> },
+              { path: 'my-bookings/:id/invoice', element: <BookingInvoicePage /> },
+              { path: 'my-bookings/:id/invoice/pdf', element: <BookingInvoicePdfPage /> },
             ],
           },
           {
