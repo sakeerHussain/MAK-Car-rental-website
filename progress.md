@@ -4,11 +4,13 @@
 ## ✅ Phase 2 — Customer Rental (done, tagged v1-phase2)
 ## ✅ Phase 3 — Admin Core (done, tagged v1-phase3)
 ## ✅ Phase 4 — Admin Extended (done)
-## ✅ Phase 5 — Portals + Marketing (done)
-Vendor portal, Driver portal, marketing pages (About/Fleet/Services/Contact/etc.), PDF document routes.
+## ✅ Phase 5 — Portals + Marketing (done, combined commit with Phase 4)
 
 ## ⏳ Phase 6 — Polish (next)
-Not started: responsive QA, loading skeletons audit, accessibility, Playwright E2E smoke tests.
 
-## Known issues / deviations from spec
-(none yet — update this if you ever have to knowingly cut a corner)
+## Known issues / deviations
+- Phase 4 and 5 were committed together (tag v1-phase4-5) — shared files
+  (router.jsx, enums.js, mocks) made a clean split impractical.
+- .cursor/rules/ was misnamed as cursor/rules/ (no dot) through Phase 4 and
+  5, so custom rules weren't actually active during those builds. Fixed as
+  of this commit — verify Settings → Rules shows them before Phase 6.
